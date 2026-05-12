@@ -1,0 +1,197 @@
+/* UTAH.CSS // LEVIATHAN PROTOCOL v3.0
+   ARCHITECT: SPARK-PRIME // TIMELINE: OMEGA-ZETA
+   CAPABILITY: FULL STACK UI (ZERO-JS)
+*/
+
+/* --- [LAYER 0: CORE PHYSICS] --- */
+:root {
+    --void-black: oklch(12% 0.02 260);
+    --void-deep:  oklch(5% 0.02 260);
+    --neon-salt:  oklch(98% 0.01 200);
+    --plasma-red: oklch(55% 0.22 30);
+    --cyber-blue: oklch(65% 0.18 240);
+    --bio-green:  oklch(70% 0.18 140);
+    --warn-gold:  oklch(75% 0.15 85);
+
+    --flux-pad: clamp(1rem, 3vw, 2rem);
+    --anim-snap: 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
+    --glass: rgba(255, 255, 255, 0.05);
+    --nav-height: 60px;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+    background-color: var(--void-black);
+    color: var(--neon-salt);
+    font-family: 'Courier New', monospace;
+    line-height: 1.6;
+    overflow-x: hidden;
+    padding-top: var(--nav-height); /* Space for Fixed Nav */
+}
+
+/* --- [LAYER 1: HASH-STATE VECTORING (ROUTING)] --- */
+/* This replaces React Router. */
+
+.utah-page {
+    display: none; /* Default: Page is offline */
+    padding: var(--flux-pad);
+    animation: page-materialize 0.5s ease;
+}
+
+/* The Magic: If ID matches URL hash, render it */
+.utah-page:target {
+    display: block;
+}
+
+/* Default Route: If no hash exists, show Home (requires specific HTML structure) */
+/* We handle this by making the Home page display:block by default,
+   but hiding it if ANY other page is targeted.
+   See HTML implementation for the "Home Fallback" trick. */
+
+@keyframes page-materialize {
+    from { opacity: 0; transform: translateY(20px); filter: blur(10px); }
+    to { opacity: 1; transform: translateY(0); filter: blur(0); }
+}
+
+/* --- [LAYER 2: COMPONENTS] --- */
+
+/* 2.1 NAV BAR (Fixed & Responsive) */
+.utah-nav {
+    position: fixed; top: 0; left: 0; width: 100%;
+    height: var(--nav-height);
+    background: rgba(10, 10, 15, 0.9);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--glass);
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0 2rem;
+    z-index: 1000;
+}
+.utah-brand { font-weight: 900; color: var(--plasma-red); text-decoration: none; letter-spacing: 2px; }
+.utah-nav-links { display: flex; gap: 1rem; }
+.utah-nav-link {
+    color: var(--neon-salt); text-decoration: none; font-size: 0.9rem; opacity: 0.7; transition: 0.2s;
+}
+.utah-nav-link:hover { opacity: 1; color: var(--cyber-blue); }
+
+/* 2.2 THE CAROUSEL (Scroll Snap Logic) */
+.utah-carousel {
+    display: flex;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scroll-behavior: smooth;
+    border: 1px solid var(--glass);
+    border-radius: 8px;
+}
+.utah-slide {
+    flex: 0 0 100%;
+    height: 300px;
+    scroll-snap-align: start;
+    display: grid; place-items: center;
+    font-size: 2rem;
+    background: var(--glass);
+}
+/* No JS arrows? We use anchor links to slide IDs! */
+
+/* 2.3 ALERTS / TOASTS (Animation Logic) */
+.utah-alert {
+    padding: 1rem;
+    margin-bottom: 1rem;
+    border-left: 4px solid;
+    background: rgba(255,255,255,0.03);
+    position: relative;
+}
+.alert-danger { border-color: var(--plasma-red); }
+.alert-success { border-color: var(--bio-green); }
+
+/* The "Close" Logic using Checkboxes */
+.utah-close-trigger { display: none; }
+.utah-alert:has(.utah-close-trigger:checked) {
+    display: none; /* Despawns from DOM */
+}
+.utah-close-btn {
+    position: absolute; top: 5px; right: 10px;
+    cursor: pointer; opacity: 0.5;
+}
+.utah-close-btn:hover { opacity: 1; }
+
+/* 2.4 FORMS & VALIDATION (State Logic) */
+.utah-form-group { position: relative; margin-bottom: 2rem; }
+.utah-input {
+    width: 100%; padding: 10px;
+    background: transparent; border: none; border-bottom: 2px solid #333;
+    color: white; outline: none;
+}
+/* Validation Feedback */
+.utah-input:valid { border-bottom-color: var(--bio-green); }
+.utah-input:invalid:not(:placeholder-shown) { border-bottom-color: var(--plasma-red); }
+
+/* Floating Label */
+.utah-label {
+    position: absolute; left: 0; top: 10px; transition: 0.3s; pointer-events: none; color: #888;
+}
+.utah-input:focus ~ .utah-label,
+.utah-input:not(:placeholder-shown) ~ .utah-label {
+    top: -20px; font-size: 0.8rem; color: var(--cyber-blue);
+}
+
+/* 2.5 DROPDOWN (Focus/Hover Logic) */
+.utah-dropdown { position: relative; display: inline-block; }
+.utah-dropdown-menu {
+    position: absolute; top: 100%; left: 0;
+    background: var(--void-deep); border: 1px solid var(--glass);
+    min-width: 150px;
+    opacity: 0; visibility: hidden; transform: translateY(10px);
+    transition: var(--anim-snap);
+    z-index: 100;
+}
+/* Trigger */
+.utah-dropdown:hover .utah-dropdown-menu,
+.utah-dropdown:focus-within .utah-dropdown-menu {
+    opacity: 1; visibility: visible; transform: translateY(0);
+}
+.utah-menu-item {
+    display: block; padding: 10px; color: #fff; text-decoration: none;
+}
+.utah-menu-item:hover { background: var(--glass); }
+
+/* 2.6 LOADER (Keyframes) */
+.utah-spinner {
+    width: 40px; height: 40px;
+    border: 4px solid var(--glass);
+    border-top-color: var(--plasma-red);
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+@keyframes spin { to { transform: rotate(360deg); } }
+
+/* 2.7 ACCORDION (Details/Summary) */
+details.utah-accordion {
+    background: var(--glass); margin-bottom: 5px;
+}
+summary.utah-summary {
+    padding: 1rem; cursor: pointer; list-style: none; display: flex; justify-content: space-between;
+}
+summary.utah-summary::after { content: '+'; font-weight: bold; }
+details[open] summary.utah-summary::after { content: '-'; color: var(--plasma-red); }
+.utah-accordion-content { padding: 1rem; border-top: 1px solid rgba(255,255,255,0.1); }
+
+/* --- [LAYER 3: THEME SWITCHER (Quantum Binary)] --- */
+/* Uses a global checkbox to invert specific variables */
+html:has(#theme-toggle:checked) {
+    --void-black: #e0e0e0;
+    --void-deep: #ffffff;
+    --neon-salt: #111111;
+    --glass: rgba(0,0,0,0.05);
+}
+
+/* UTILS */
+.container { max-width: 1100px; margin: 0 auto; }
+.btn {
+    display: inline-block; padding: 0.5rem 1.5rem;
+    background: var(--plasma-red); color: white; text-decoration: none;
+    border: none; cursor: pointer;
+}
+.btn:active { transform: scale(0.98); }
+.text-center { text-align: center; }
+.grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; }

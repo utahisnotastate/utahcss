@@ -1,0 +1,35 @@
+# OS
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# IDEs / editors
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+
+# Logs / temp
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.pnpm-debug.log*
+
+# Dependencies (if you add a lockfile later)
+node_modules/
+
+# Env / secrets (never commit)
+.env
+.env.*
+!.env.example
+
+# Build output (if added later)
+dist/
+build/
+*.local

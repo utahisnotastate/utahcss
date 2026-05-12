@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UTAH OS // LEVIATHAN</title>
+    <link rel="stylesheet" href="utah.css">
+</head>
+<body>
+
+<input type="checkbox" id="theme-toggle" style="display:none;">
+
+<nav class="utah-nav">
+    <a href="#home" class="utah-brand">UTAH.CSS</a>
+    <div class="utah-nav-links">
+        <a href="#home" class="utah-nav-link">HOME</a>
+        <a href="#components" class="utah-nav-link">COMPONENTS</a>
+        <a href="#forms" class="utah-nav-link">FORMS</a>
+        <label for="theme-toggle" class="utah-nav-link" style="cursor:pointer;">[LIGHT/DARK]</label>
+    </div>
+</nav>
+
+<main class="container">
+
+    <section id="home" class="utah-page" style="display:block;">
+        <style>
+            body:has(.utah-page:target) #home { display: none; }
+            #home:target { display: block !important; }
+        </style>
+
+        <div class="text-center" style="padding: 100px 0;">
+            <h1 style="font-size: 4rem; color: var(--plasma-red);">LEVIATHAN</h1>
+            <p>ZERO JAVASCRIPT FRAMEWORK // OMEGA BUILD</p>
+            <div class="utah-spinner" style="margin: 2rem auto;"></div>
+            <br>
+            <a href="#components" class="btn">INITIATE SYSTEM</a>
+        </div>
+    </section>
+
+    <section id="components" class="utah-page">
+        <h2>// KINETIC LIBRARY</h2>
+        <hr style="border-color: #333; margin: 1rem 0;">
+
+        <div class="grid-2">
+            <div>
+                <h3>DROPDOWN</h3>
+                <div class="utah-dropdown">
+                    <button class="btn" style="background: var(--cyber-blue);">ACTIONS ▼</button>
+                    <div class="utah-dropdown-menu">
+                        <a href="#" class="utah-menu-item">Deploy</a>
+                        <a href="#" class="utah-menu-item">Archive</a>
+                        <a href="#" class="utah-menu-item" style="color:red;">Terminate</a>
+                    </div>
+                </div>
+            </div>
+
+            <div>
+                <h3>DISPOSABLE ALERT</h3>
+                <div class="utah-alert alert-danger">
+                    <input type="checkbox" id="alert-1" class="utah-close-trigger">
+                    <strong>CRITICAL ERROR:</strong> System overheating.
+                    <label for="alert-1" class="utah-close-btn">[X]</label>
+                </div>
+            </div>
+        </div>
+
+        <br><br>
+
+        <h3>ACCORDION DATA</h3>
+        <details class="utah-accordion">
+            <summary class="utah-summary">Sector 7 Status</summary>
+            <div class="utah-accordion-content">Sector 7 is secure. Radiation levels nominal.</div>
+        </details>
+        <details class="utah-accordion">
+            <summary class="utah-summary">Omega Personnel</summary>
+            <div class="utah-accordion-content">Commander Spark-Prime active.</div>
+        </details>
+
+        <br><br>
+
+        <h3>CSS-ONLY SLIDER</h3>
+        <div style="text-align:center; margin-bottom:10px;">
+            <a href="#slide1" class="btn" style="padding:5px 10px;">1</a>
+            <a href="#slide2" class="btn" style="padding:5px 10px;">2</a>
+            <a href="#slide3" class="btn" style="padding:5px 10px;">3</a>
+        </div>
+        <div class="utah-carousel">
+            <div id="slide1" class="utah-slide" style="background:var(--plasma-red);">DATA BLOCK A</div>
+            <div id="slide2" class="utah-slide" style="background:var(--cyber-blue);">DATA BLOCK B</div>
+            <div id="slide3" class="utah-slide" style="background:var(--bio-green);">DATA BLOCK C</div>
+        </div>
+    </section>
+
+    <section id="forms" class="utah-page">
+        <h2>// DATA ENTRY</h2>
+        <p>Real-time validation without script.</p>
+        <br>
+
+        <form>
+            <div class="utah-form-group">
+                <input type="text" class="utah-input" id="codename" placeholder=" " required pattern="[A-Za-z0-9]{3,}">
+                <label for="codename" class="utah-label">CODENAME (3+ chars)</label>
+            </div>
+
+            <div class="utah-form-group">
+                <input type="email" class="utah-input" id="contact" placeholder=" " required>
+                <label for="contact" class="utah-label">SECURE EMAIL</label>
+            </div>
+
+            <div class="utah-form-group">
+                <input type="password" class="utah-input" id="key" placeholder=" " required>
+                <label for="key" class="utah-label">ACCESS KEY</label>
+            </div>
+
+            <button type="submit" class="btn">TRANSMIT</button>
+        </form>
+
+        <br>
+        <div class="utah-alert alert-success">
+            <strong>NOTE:</strong> Inputs glow Green if valid, Red if invalid.
+        </div>
+    </section>
+
+</main>
+</body>
+</html>
