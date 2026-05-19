@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Module 5 — The Reactive Grid</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <p class="module-tag">Declarative Foundations · Module 5</p>
+
+    <div class="utah-archive-system">
+
+        <input type="radio" name="filter" id="show-all" class="hidden-state" checked>
+        <input type="radio" name="filter" id="show-secure" class="hidden-state">
+        <input type="radio" name="filter" id="show-public" class="hidden-state">
+
+        <div class="filter-controls">
+            <label for="show-all" class="filter-btn">All Data</label>
+            <label for="show-secure" class="filter-btn">Secure Only</label>
+            <label for="show-public" class="filter-btn">Public Only</label>
+        </div>
+
+        <div class="data-grid">
+            <div class="data-card type-secure">Classified Map</div>
+            <div class="data-card type-public">Press Release</div>
+            <div class="data-card type-secure">Encryption Key</div>
+            <div class="data-card type-public">Menu PDF</div>
+        </div>
+
+    </div>
+
+</body>
+</html>

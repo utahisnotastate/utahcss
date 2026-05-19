@@ -5,7 +5,7 @@
 
 See also the project **[README.md](./README.md)** for the enterprise overview and quick-start modal.
 
-**New to zero-script development?** Start with the **[Declarative Foundations curriculum](./curriculum/README.md)** (Modules 1–2 + links to forms, cart, and `:has()` patterns).
+**New to zero-script development?** Start with the **[Declarative Foundations curriculum](./curriculum/README.md)** — all 5 modules complete with runnable examples in `curriculum/examples/`.
 
 This document is split so **non-technical readers** can copy working patterns, and **developers** can understand behavior, limitations, and customization.
 
@@ -463,6 +463,8 @@ All components assume border-box sizing and zeroed default margins.
 | `.utah-total-display` | Renders `$` + `counter(cart-total)` via `::after`. |
 | `.utah-checkout-btn` | Shown when cart `:has(.utah-item:checked)`. |
 | `.utah-summary-panel` | Total row layout. |
+| `.utah-archive-system` | Filterable grid wrapper (`:has()`). |
+| `.utah-data-grid` / `.utah-data-card` | Archive card grid. |
 | `.utah-label` | Floating label. |
 | `.utah-dropdown` | Dropdown positioning context. |
 | `.utah-dropdown-menu` | Popover panel. |
@@ -570,7 +572,9 @@ Use `index.html` as a **canonical example** when unsure of markup order (especia
 | `forms.html` | Pattern-matching form demo. |
 | `cart.html` | CSS counter shopping cart demo. |
 | `ADVANCED_CALCULATION.md` | Calculator/cart tutorial + roadmap. |
-| `curriculum/` | Beginner modules 1–2 + runnable examples. |
+| `curriculum/` | Full 5-module beginner series + examples. |
+| `curriculum/MODULE_03_AND_04.md` | Validation + counters (Modules 3–4). |
+| `curriculum/MODULE_05_REACTIVE_GRID.md` | `:has()` filtering (Module 5). |
 
 ---
 

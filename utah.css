@@ -1,4 +1,4 @@
-/* UTAH.CSS // UTAH-OMEGA-23 PROTOCOL v4.1
+/* UTAH.CSS // UTAH-OMEGA-23 PROTOCOL v4.2
    ARCHITECT: SPARK-PRIME // TIMELINE: OMEGA-ZETA
    CAPABILITY: FULL STACK UI (ZERO-JS) — DECLARATIVE STATE MACHINE
 */
@@ -392,6 +392,55 @@ body:has(#modal-toggle:checked) .utah-modal,
 }
 .utah-cart-system:has(.utah-item:checked) .utah-checkout-btn {
     display: block;
+}
+
+/* 2.10 REACTIVE GRID / ARCHIVE FILTER (:has + radio — Module 5) */
+.utah-archive-system { margin: 1rem 0; }
+.utah-archive-system .filter-controls {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-bottom: 0.5rem;
+}
+.utah-archive-system .filter-btn {
+    display: inline-block;
+    padding: 0.5rem 1rem;
+    background: var(--glass);
+    border: 1px solid var(--glass);
+    color: var(--neon-salt);
+    cursor: pointer;
+    font-family: inherit;
+    font-size: 0.9rem;
+}
+.utah-archive-system:has(#show-all:checked) label[for="show-all"],
+.utah-archive-system:has(#show-secure:checked) label[for="show-secure"],
+.utah-archive-system:has(#show-public:checked) label[for="show-public"],
+.utah-archive-system:has(#utah-show-all:checked) label[for="utah-show-all"],
+.utah-archive-system:has(#utah-show-secure:checked) label[for="utah-show-secure"],
+.utah-archive-system:has(#utah-show-public:checked) label[for="utah-show-public"] {
+    border-color: var(--cyber-blue);
+    color: var(--cyber-blue);
+}
+.utah-data-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    gap: 1rem;
+    margin-top: 1rem;
+}
+.utah-data-card {
+    padding: 1.25rem;
+    background: var(--glass);
+    border: 1px solid var(--glass);
+    border-radius: 4px;
+    transition: var(--anim-snap);
+}
+.utah-archive-system:has(#show-secure:checked) .type-public,
+.utah-archive-system:has(#utah-show-secure:checked) .type-public {
+    display: none;
+}
+.utah-archive-system:has(#show-public:checked) .type-secure,
+.utah-archive-system:has(#utah-show-public:checked) .type-secure {
+    display: none;
 }
 
 /* --- [LAYER 3: THEME SWITCHER (Quantum Binary)] --- */

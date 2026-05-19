@@ -1,0 +1,79 @@
+body {
+    font-family: system-ui, sans-serif;
+    background: #1a1a1a;
+    color: #eee;
+    padding: 2rem;
+    max-width: 640px;
+    margin: 0 auto;
+}
+
+.module-tag {
+    font-size: 0.85rem;
+    opacity: 0.7;
+    margin-bottom: 1.5rem;
+}
+
+.hidden-state {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+}
+
+.filter-controls {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+
+.filter-btn {
+    display: inline-block;
+    padding: 10px 15px;
+    background: #333;
+    color: #ccc;
+    border: 1px solid #555;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.9rem;
+}
+
+.utah-archive-system:has(#show-all:checked) label[for="show-all"],
+.utah-archive-system:has(#show-secure:checked) label[for="show-secure"],
+.utah-archive-system:has(#show-public:checked) label[for="show-public"] {
+    border-color: #00ff66;
+    color: #00ff66;
+}
+
+.data-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    gap: 15px;
+    margin-top: 20px;
+}
+
+.data-card {
+    background: #333;
+    color: #fff;
+    padding: 20px;
+    border-radius: 5px;
+    transition: all 0.3s ease;
+}
+
+.type-secure {
+    border-left: 4px solid #ff4444;
+}
+
+.type-public {
+    border-left: 4px solid #4488ff;
+}
+
+.utah-archive-system:has(#show-secure:checked) .type-public {
+    display: none;
+}
+
+.utah-archive-system:has(#show-public:checked) .type-secure {
+    display: none;
+}

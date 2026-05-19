@@ -1,0 +1,47 @@
+body {
+    font-family: system-ui, sans-serif;
+    background: #1a1a1a;
+    color: #eee;
+    padding: 2rem;
+    max-width: 420px;
+    margin: 0 auto;
+}
+
+.module-tag {
+    font-size: 0.85rem;
+    opacity: 0.7;
+    margin-bottom: 1.5rem;
+}
+
+.cart-system {
+    counter-reset: cart-total 0;
+    line-height: 2;
+}
+
+.cart-item {
+    margin-right: 0.5rem;
+    accent-color: #00ff66;
+}
+
+.cart-item.price-50:checked {
+    counter-increment: cart-total 50;
+}
+
+.cart-item.price-100:checked {
+    counter-increment: cart-total 100;
+}
+
+.total-display {
+    margin-top: 1.5rem;
+    font-size: 1.25rem;
+}
+
+.total-display::after {
+    content: counter(cart-total);
+    font-weight: bold;
+    color: #00ff66;
+}
+
+label {
+    cursor: pointer;
+}

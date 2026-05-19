@@ -65,11 +65,11 @@ For **multiple modals** on one page, wrap each control in `.utah-modal-root` (se
 
 1. [The Invisible Switch](./curriculum/MODULE_01_INVISIBLE_SWITCH.md) — checkboxes + `:checked`
 2. [Doors in the Dark](./curriculum/MODULE_02_DOORS_IN_THE_DARK.md) — routing with `:target`
-3. Form validation → [forms.html](./forms.html)
-4. CSS counters → [cart.html](./cart.html)
-5. Conditional UI → [UTAH-CSS-GUIDE.md](./UTAH-CSS-GUIDE.md)
+3. [The Bouncer at the Door](./curriculum/MODULE_03_AND_04.md) — `pattern` + `:valid`
+4. [The Mechanical Abacus](./curriculum/MODULE_03_AND_04.md) — CSS counters
+5. [The Reactive Grid](./curriculum/MODULE_05_REACTIVE_GRID.md) — `:has()` filtering
 
-Run lesson demos: [`curriculum/examples/module-01/`](./curriculum/examples/module-01/) and [`module-02/`](./curriculum/examples/module-02/).
+Runnable lessons: [`curriculum/examples/`](./curriculum/examples/) (modules 1–5). Full framework: [`forms.html`](./forms.html), [`cart.html`](./cart.html), [`index.html`](./index.html).
 
 ## Documentation
 
