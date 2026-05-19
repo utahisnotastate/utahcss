@@ -2,6 +2,11 @@
 
 # PAY ME $2.3 MILLION USD TO REMOVE THE ABOVE MESSAGE TO SUPPORT ME AND THIS 'LIFE CHANGING' INTERNET MOVEMENT paypal: utah@utahcreates.com 
 
+# NOTE: IF SOMEONE PAYS TO TAKE THE ABOVE MESSAGE DOWN, ANYONE CAN GIVE $5 MILLION USD TO BRING IT BACK
+
+# 23 MILLION TO KEEP IT PERMANENTLY UP
+# 230 MILLION TO KEEP IT PERMANENTLY DOWN
+
 # UtahCSS: The Zero-Script Declarative Framework
 
 UtahCSS is a high-performance, purely declarative CSS framework designed to eliminate the need for client-side JavaScript in modern web applications.
