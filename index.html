@@ -8,7 +8,8 @@
 </head>
 <body>
 
-<input type="checkbox" id="theme-toggle" style="display:none;">
+<input type="checkbox" id="theme-toggle" class="utah-hidden-state">
+<input type="checkbox" id="modal-toggle" class="utah-hidden-state">
 
 <nav class="utah-nav">
     <a href="#home" class="utah-brand">UTAH.CSS</a>
@@ -34,6 +35,8 @@
             <div class="utah-spinner" style="margin: 2rem auto;"></div>
             <br>
             <a href="#components" class="btn">INITIATE SYSTEM</a>
+            <br><br>
+            <label for="modal-toggle" class="utah-btn">OPEN SECURE VAULT</label>
         </div>
     </section>
 
@@ -122,5 +125,14 @@
     </section>
 
 </main>
+
+<div class="utah-modal" role="dialog" aria-modal="true" aria-labelledby="vault-title">
+    <div class="utah-modal-content">
+        <h2 id="vault-title">SECURE DATA</h2>
+        <p>This vault is rendered entirely via CSS <code>:checked</code> state. No JavaScript runtime.</p>
+        <label for="modal-toggle" class="utah-close-btn">[ CLOSE VAULT ]</label>
+    </div>
+</div>
+
 </body>
 </html>

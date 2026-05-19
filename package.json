@@ -1,10 +1,18 @@
 {
   "name": "utahcss",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+  "version": "4.0.0",
+  "description": "Zero-script declarative CSS framework — routing, modals, and state via HTML + CSS only.",
+  "private": true,
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/utahisnotastate/utahcss.git"
   },
-  "private": true
+  "files": [
+    "utah.css",
+    "index.html",
+    "UTAH-CSS-GUIDE.md",
+    "README.md",
+    "LICENSE"
+  ]
 }

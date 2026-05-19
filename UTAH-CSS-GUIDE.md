@@ -1,9 +1,30 @@
 # Utah.css — User Guide & Technical Reference
 
-**Version:** Leviathan Protocol v3.0 (as declared in `utah.css`)  
-**Philosophy:** Full-stack–style UI patterns using **HTML + CSS only**—no JavaScript framework required for navigation, dropdowns, dismissible alerts, theme toggle, or basic form feedback.
+**Version:** Utah-Omega-23 Protocol v4.0 (as declared in `utah.css`)  
+**Philosophy:** Full-stack–style UI patterns using **HTML + CSS only**—no JavaScript framework required for navigation, modals, dismissible alerts, theme toggle, routing, or basic form feedback.
+
+See also the project **[README.md](./README.md)** for the enterprise overview and quick-start modal.
 
 This document is split so **non-technical readers** can copy working patterns, and **developers** can understand behavior, limitations, and customization.
+
+---
+
+## The Child Protocol — Why We Avoid Client-Side JavaScript
+
+### The analogy (for everyone)
+
+Imagine you want a secure vault for your toys.
+
+- **Lego bricks (CSS):** Solid plastic. Pieces stay exactly where you place them. There are no gears or wires for a “spy robot” to hijack.
+- **Clockwork + wires (JavaScript):** Can look impressive, but a bad actor can slip in a bad gear. When the machine runs, that gear can unlock the door from the inside.
+
+UtahCSS is the Lego approach: **clicking a control checks a box**; **CSS changes shape** to show a menu or modal. No engine runs in the browser.
+
+### The professional pivot (for developers)
+
+Client-side JavaScript introduces an active runtime in the user’s browser—a large attack surface and the primary vector for XSS, arbitrary execution, and supply-chain risk (e.g. npm). UtahCSS uses a **declarative state machine**: hidden checkboxes/radios plus `:checked`, `:has()`, `:target`, and sibling combinators. The UI layer is **air-gapped from executable code** for everything the framework covers.
+
+**Caveat:** Server logic, analytics you add yourself, or third-party embeds are separate concerns. UtahCSS eliminates JS for *UI state* shipped with the framework—not for your entire product unless you choose that architecture end-to-end.
 
 ---
 
@@ -28,6 +49,7 @@ You do **not** need to install special software to try it: if you have a web pag
 | **Accordion** | Expand/collapse panels using built-in browser controls. |
 | **Image-free “slider”** | Horizontal panels you can snap to using numbered links. |
 | **Form hints** | Underlines can turn green/red to reflect valid or invalid input (browser validation + CSS). |
+| **Secure modal** | A popup “vault” opens and closes via hidden checkboxes—no script. |
 
 ### What Utah.css does *not* do
 
@@ -144,14 +166,39 @@ Example (same idea as the demo):
 
 ---
 
-### Tutorial C — Light / dark theme toggle (no JavaScript)
+### Tutorial C — Modal (secure vault, no JavaScript)
+
+**Goal:** Open/close an overlay using checkbox state.
+
+**Single modal (matches README):**
+
+```html
+<input type="checkbox" id="modal-toggle" class="utah-hidden-state">
+<label for="modal-toggle" class="utah-btn">Open Secure Vault</label>
+
+<div class="utah-modal">
+  <div class="utah-modal-content">
+    <h2>Secure Data</h2>
+    <p>Rendered via CSS only.</p>
+    <label for="modal-toggle" class="utah-close-btn">Close</label>
+  </div>
+</div>
+```
+
+**Multiple modals:** wrap each set in `.utah-modal-root` with its own checkbox id; CSS uses `.utah-modal-root:has(.utah-hidden-state:checked) .utah-modal`.
+
+**Do not** reuse `id="modal-toggle"` for more than one control on the same page.
+
+---
+
+### Tutorial D — Light / dark theme toggle (no JavaScript)
 
 **Goal:** Clicking a label flips global colors.
 
 1. Add a **hidden** checkbox **once** in the document (typically top of `body`):
 
 ```html
-<input type="checkbox" id="theme-toggle" style="display:none;">
+<input type="checkbox" id="theme-toggle" class="utah-hidden-state">
 ```
 
 2. Use a `<label for="theme-toggle">` anywhere (e.g. in the nav) so clicking it toggles the checkbox.
@@ -172,7 +219,7 @@ So checking the box **redefines** only those variables; everything using `var(--
 
 ---
 
-### Tutorial D — Dropdown menu
+### Tutorial E — Dropdown menu
 
 ```html
 <div class="utah-dropdown">
@@ -188,7 +235,7 @@ So checking the box **redefines** only those variables; everything using `var(--
 
 ---
 
-### Tutorial E — Dismissible alert
+### Tutorial F — Dismissible alert
 
 ```html
 <div class="utah-alert alert-danger">
@@ -206,7 +253,7 @@ So checking the box **redefines** only those variables; everything using `var(--
 
 ---
 
-### Tutorial F — Accordion
+### Tutorial G — Accordion
 
 ```html
 <details class="utah-accordion">
@@ -221,7 +268,7 @@ Uses native `<details>` / `<summary>`; the `+` / `-` indicator is pure CSS on `s
 
 ---
 
-### Tutorial G — Horizontal “carousel” with anchor jumps
+### Tutorial H — Horizontal “carousel” with anchor jumps
 
 ```html
 <div style="text-align:center;">
@@ -240,7 +287,7 @@ Uses native `<details>` / `<summary>`; the `+` / `-` indicator is pure CSS on `s
 
 ---
 
-### Tutorial H — Floating-label inputs with validation styling
+### Tutorial I — Floating-label inputs with validation styling
 
 **Required structure:** `input` **first**, then `label` **after** (sibling), because CSS uses `~` combinator.
 
@@ -268,7 +315,7 @@ Combine with standard HTML5 attributes: `required`, `type="email"`, `pattern`, `
 
 ---
 
-### Tutorial I — Loading spinner
+### Tutorial J — Loading spinner
 
 ```html
 <div class="utah-spinner" role="status" aria-label="Loading"></div>
@@ -320,7 +367,12 @@ All components assume border-box sizing and zeroed default margins.
 | `.utah-alert` | Alert container. |
 | `.alert-danger` | Red left border. |
 | `.alert-success` | Green left border. |
-| `.utah-close-trigger` | Hidden checkbox for dismiss. |
+| `.utah-hidden-state` | Visually hidden checkbox/radio (state memory). |
+| `.utah-close-trigger` | Same hiding technique; used inside alerts. |
+| `.utah-modal` | Full-screen overlay (shown when toggle checked). |
+| `.utah-modal-content` | Modal panel. |
+| `.utah-modal-root` | Wrapper for scoped multi-modal pages. |
+| `.utah-btn` | Primary button (alias of `.btn`). |
 | `.utah-close-btn` | Label acting as close control. |
 | `.utah-form-group` | Wrapper for floating label layout. |
 | `.utah-input` | Textual input underline style. |
@@ -390,11 +442,12 @@ All components assume border-box sizing and zeroed default margins.
 
 The bundled demo wires every major feature together:
 
-1. **Theme toggle** — `#theme-toggle` + nav label.
-2. **Nav** — `.utah-nav` links to `#home`, `#components`, `#forms`.
-3. **Home** — default visible section with spinner and CTA `.btn`.
-4. **Components** — grid of dropdown + alert; accordions; carousel with three slides.
-5. **Forms** — three floating-label fields and success alert note.
+1. **Theme toggle** — `#theme-toggle` with `.utah-hidden-state` + nav label.
+2. **Modal** — `#modal-toggle` opens `.utah-modal` from home; close label inside panel.
+3. **Nav** — `.utah-nav` links to `#home`, `#components`, `#forms`.
+4. **Home** — default visible section with spinner, CTA, and vault trigger.
+5. **Components** — dropdown + alert; accordions; carousel with three slides.
+6. **Forms** — three floating-label fields and success alert note.
 
 Use `index.html` as a **canonical example** when unsure of markup order (especially forms and alerts).
 
@@ -410,6 +463,8 @@ Use `index.html` as a **canonical example** when unsure of markup order (especia
 | Dropdown never opens | Typo in class names; menu not nested inside `.utah-dropdown`. |
 | Alert [X] does nothing | `for` / `id` mismatch; missing `utah-close-trigger` on checkbox. |
 | Theme toggle no effect | Checkbox `id` is not exactly `theme-toggle` (selector is fixed in `utah.css`). |
+| Modal won’t open | Missing `id="modal-toggle"` on input, or typo in `for` on labels. |
+| Wrong modal opens | Duplicate `modal-toggle` ids; use `.utah-modal-root` per modal. |
 | Carousel doesn’t scroll to slide | Slide missing `id` matching `href`; parent not `.utah-carousel`. |
 
 ---
@@ -420,7 +475,9 @@ Use `index.html` as a **canonical example** when unsure of markup order (especia
 |------|------|
 | `utah.css` | Framework source. |
 | `index.html` | Living examples / showroom. |
+| `README.md` | Project overview and quick start. |
 | `UTAH-CSS-GUIDE.md` | This document. |
+| `LICENSE` | MIT license. |
 
 ---
 
