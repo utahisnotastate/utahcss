@@ -4,8 +4,6 @@ UtahCSS is a high-performance, purely declarative CSS framework designed to elim
 
 By utilizing advanced CSS selectors (`:has()`, `:checked`, `:target`, `~`, `+`) and native HTML state elements, UtahCSS allows developers to build complex, interactive interfaces—including routing, state management, and conditional rendering—without exposing users to the massive attack surface of executable client-side scripts.
 
-**Repository:** [github.com/utahisnotastate/utahcss](https://github.com/utahisnotastate/utahcss)
-
 ## Core Philosophy
 
 The modern web has become dangerously reliant on heavy JavaScript bundles for basic user interface logic. This reliance introduces severe security vulnerabilities (XSS, supply chain attacks), degrades battery life, and slows down content delivery.
@@ -54,7 +52,12 @@ For **multiple modals** on one page, wrap each control in `.utah-modal-root` (se
 
 ## Live Demo
 
-Open [`index.html`](./index.html) in a browser for routing, forms, carousel, theme toggle, and modal examples. See also [`forms.html`](./forms.html) and [`cart.html`](./cart.html).
+**Online (GitHub Pages):** [https://utahisnotastate.github.io/utahcss/](https://utahisnotastate.github.io/utahcss/)  
+— served from `main` after the Pages workflow runs (repo **Settings → Pages → Build: GitHub Actions**).
+
+**Local:** open [`index.html`](./index.html), [`forms.html`](./forms.html), or [`cart.html`](./cart.html) in a browser.
+
+**Repository:** [github.com/utahisnotastate/utahcss](https://github.com/utahisnotastate/utahcss)
 
 ## Documentation
 
