@@ -380,6 +380,23 @@ Pure CSS rotation; add `aria` attributes for screen readers in real projects.
 
 ---
 
+### Tutorial: Zero-Script Calculator & Cart {#tutorial-zero-script-calculator}
+
+**Goal:** Sum line-item prices and show checkout only when items are selected—using CSS counters, not JavaScript.
+
+Full walkthrough, monetization notes, and extension patterns: **[ADVANCED_CALCULATION.md](./ADVANCED_CALCULATION.md)**.
+
+**Live demo:** [`cart.html`](./cart.html)
+
+**Core idea:**
+
+1. `counter-reset: cart-total 0` on `.utah-cart-system`
+2. Each `.utah-item.tier-name:checked { counter-increment: cart-total <price>; }`
+3. `.utah-total-display::after { content: "$" counter(cart-total); }`
+4. `.utah-cart-system:has(.utah-item:checked) .utah-checkout-btn { display: block; }`
+
+---
+
 ## Part 4 — Technical reference
 
 ### Design tokens (`:root` custom properties)
