@@ -46,23 +46,29 @@ body {
 }
 
 /* --- [LAYER 1: HASH-STATE VECTORING (ROUTING)] --- */
-/* This replaces React Router. */
+/* Replaces react-router / client-side routers. URL hash = flashlight on one door. */
+
+.utah-router-view {
+    width: 100%;
+}
 
 .utah-page {
-    display: none; /* Default: Page is offline */
+    display: none; /* All doors in the dark */
     padding: var(--flux-pad);
-    animation: page-materialize 0.5s ease;
 }
 
-/* The Magic: If ID matches URL hash, render it */
+/* If this page's id matches the URL hash (#dashboard), turn on the lights */
 .utah-page:target {
     display: block;
+    animation: utahFadeIn 0.3s ease-in-out;
 }
 
-/* Default Route: If no hash exists, show Home (requires specific HTML structure) */
-/* We handle this by making the Home page display:block by default,
-   but hiding it if ANY other page is targeted.
-   See HTML implementation for the "Home Fallback" trick. */
+/* Default route: see index.html home-fallback (:has) pattern */
+
+@keyframes utahFadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
 
 @keyframes page-materialize {
     from { opacity: 0; transform: translateY(20px); filter: blur(10px); }
@@ -129,16 +135,52 @@ body {
 }
 .utah-close-btn:hover { opacity: 1; }
 
-/* 2.4 FORMS & VALIDATION (State Logic) */
-.utah-form-group { position: relative; margin-bottom: 2rem; }
-.utah-input {
-    width: 100%; padding: 10px;
-    background: transparent; border: none; border-bottom: 2px solid #333;
-    color: white; outline: none;
+/* 2.4 FORMS & VALIDATION (HTML5 Constraint API + CSS — no script) */
+.utah-form { max-width: 520px; }
+.utah-form-group,
+.utah-input-group {
+    position: relative;
+    margin-bottom: 2rem;
 }
-/* Validation Feedback */
-.utah-input:valid { border-bottom-color: var(--bio-green); }
-.utah-input:invalid:not(:placeholder-shown) { border-bottom-color: var(--plasma-red); }
+.utah-input {
+    width: 100%;
+    padding: 10px;
+    background: transparent;
+    border: 2px solid #333;
+    border-radius: 0;
+    color: var(--neon-salt);
+    outline: none;
+    transition: border-color 0.3s ease;
+}
+.utah-error-text {
+    display: none;
+    color: var(--plasma-red);
+    font-size: 0.85rem;
+    margin-top: 0.35rem;
+}
+/* Invalid after user types — red border + error copy */
+.utah-input:not(:placeholder-shown):invalid {
+    border-color: var(--plasma-red);
+}
+.utah-input:not(:placeholder-shown):invalid ~ .utah-error-text {
+    display: block;
+}
+/* Pattern / type match — green border */
+.utah-input:not(:placeholder-shown):valid {
+    border-color: var(--bio-green);
+}
+/* Legacy underline-only pages still work */
+.utah-form-group .utah-input {
+    border: none;
+    border-bottom: 2px solid #333;
+}
+.utah-form-group .utah-input:not(:placeholder-shown):valid {
+    border-bottom-color: var(--bio-green);
+}
+.utah-form-group .utah-input:not(:placeholder-shown):invalid {
+    border-color: transparent;
+    border-bottom-color: var(--plasma-red);
+}
 
 /* Floating Label */
 .utah-label {
@@ -148,6 +190,56 @@ body {
 .utah-input:not(:placeholder-shown) ~ .utah-label {
     top: -20px; font-size: 0.8rem; color: var(--cyber-blue);
 }
+.utah-submit-btn {
+    display: inline-block;
+    padding: 0.5rem 1.5rem;
+    margin-top: 0.5rem;
+    background: var(--cyber-blue);
+    color: white;
+    border: none;
+    cursor: pointer;
+    font-family: inherit;
+    font-size: inherit;
+}
+.utah-submit-btn:active { transform: scale(0.98); }
+
+/* 2.4b CHECKBOX MENU (React useState → DOM state) */
+.utah-menu-root { display: inline-block; position: relative; }
+.utah-menu {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    min-width: 160px;
+    margin-top: 0.25rem;
+    background: var(--void-deep);
+    border: 1px solid var(--glass);
+    padding: 0.5rem 0;
+    z-index: 100;
+}
+.utah-menu-root:has(.utah-hidden-state:checked) .utah-menu {
+    display: block;
+}
+
+/* 2.4c RADIO TABS (mutually exclusive, zero script) */
+.utah-tabs { margin: 1rem 0; }
+.utah-tabs .utah-tab-label {
+    display: inline-block;
+    padding: 0.5rem 1rem;
+    margin-right: 0.25rem;
+    cursor: pointer;
+    border: 1px solid var(--glass);
+    opacity: 0.7;
+}
+.utah-tabs .utah-hidden-state:checked + .utah-tab-label {
+    opacity: 1;
+    border-color: var(--cyber-blue);
+    color: var(--cyber-blue);
+}
+.utah-tab-panel { display: none; padding: 1rem; border: 1px solid var(--glass); margin-top: 0.5rem; }
+.utah-tabs #utah-tab-1:checked ~ #utah-panel-1,
+.utah-tabs #utah-tab-2:checked ~ #utah-panel-2,
+.utah-tabs #utah-tab-3:checked ~ #utah-panel-3 { display: block; }
 
 /* 2.5 DROPDOWN (Focus/Hover Logic) */
 .utah-dropdown { position: relative; display: inline-block; }

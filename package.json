@@ -11,8 +11,11 @@
   "files": [
     "utah.css",
     "index.html",
+    "forms.html",
     "UTAH-CSS-GUIDE.md",
     "README.md",
+    "SECURITY_MANIFEST.md",
+    "MIGRATION_GUIDE.md",
     "LICENSE"
   ]
 }

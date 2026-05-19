@@ -127,26 +127,62 @@ Optional: serve `utah.css` from a CDN or bundle it into your asset pipeline; beh
 
 ---
 
-### Tutorial B — Hash “routing” (show one section at a time)
+### Tutorial: SPA Routing Without JavaScript {#tutorial-spa-routing-without-javascript}
 
-**Goal:** Clicking `href="#components"` shows the section whose `id` is `components`, and hides other `.utah-page` blocks.
+**Goal:** Build a Single Page Application with native back-button support—no React Router, no JavaScript.
 
-**Rules from the framework:**
+#### The analogy (for everyone)
 
-- Each “page” is a `<section class="utah-page" id="unique-id">`.
-- By default, `.utah-page { display: none }`.
-- When the URL hash matches, `.utah-page:target { display: block }`.
+Imagine a hallway with many doors, all in the dark. You have a flashlight that shines on **one** door at a time. When the light hits a door, that door opens; the rest stay hidden.
 
-**Problem:** With only that, the **home** section has no hash, so it would stay hidden unless you add a default.
+On a website, the URL hash (`#dashboard`) is the flashlight. If the URL is `#settings`, the browser “lights up” the section whose `id` is `settings`.
 
-**Pattern from `index.html` (home fallback):**
+#### The step-by-step
 
-1. Give the home section `id="home"` and **inline** `style="display:block;"` so it shows when there is no hash.
-2. Add a small `<style>` block (can live inside the home section or in the head) that:
-   - Hides `#home` when **any** `.utah-page` is targeted.
-   - Forces `#home` visible when `#home` is explicitly targeted.
+1. Normally, “About Us” triggers JavaScript to hide the home page and render About.
+2. With UtahCSS, **all pages live in one HTML file**, hidden by default.
+3. Give each page an `id`: `<section id="dashboard" class="utah-page">`.
+4. Nav links use hashes: `<a href="#dashboard">`.
+5. CSS rule `:target` means *“If my name is in the URL bar, show me.”*
 
-Example (same idea as the demo):
+#### The professional pivot
+
+SPA routing is usually handled by `react-router` (history API + DOM manipulation). UtahCSS uses **`:target`**: the browser updates history natively; CSS sets `display: block` on the matching section and `display: none` on others. **Zero bytes of executable routing code.**
+
+#### Implementation
+
+```html
+<nav class="utah-nav">
+  <a href="#dashboard" class="utah-btn">Dashboard</a>
+  <a href="#settings" class="utah-btn">Settings</a>
+</nav>
+
+<main class="utah-router-view container">
+  <section id="dashboard" class="utah-page">
+    <h2>Secure Dashboard</h2>
+    <p>Welcome to the main terminal.</p>
+  </section>
+
+  <section id="settings" class="utah-page">
+    <h2>User Settings</h2>
+    <p>Configure your secure preferences here.</p>
+  </section>
+</main>
+```
+
+**Core CSS (in `utah.css`):**
+
+```css
+.utah-page { display: none; }
+.utah-page:target {
+  display: block;
+  animation: utahFadeIn 0.3s ease-in-out;
+}
+```
+
+#### Default “home” route
+
+With only the rules above, a section with **no** hash stays hidden. For a landing page, use the **home fallback** from `index.html`:
 
 ```html
 <section id="home" class="utah-page" style="display:block;">
@@ -154,15 +190,10 @@ Example (same idea as the demo):
     body:has(.utah-page:target) #home { display: none; }
     #home:target { display: block !important; }
   </style>
-  <!-- home content -->
-</section>
-
-<section id="components" class="utah-page">
-  <!-- shown when URL ends with #components -->
 </section>
 ```
 
-**Technical note:** `:has()` is powerful but affects which browsers qualify; see [Browser support](#browser-support).
+**Technical note:** `:has()` affects browser support; see [Browser support](#browser-support).
 
 ---
 
@@ -287,31 +318,55 @@ Uses native `<details>` / `<summary>`; the `+` / `-` indicator is pure CSS on `s
 
 ---
 
-### Tutorial I — Floating-label inputs with validation styling
+### Tutorial: Zero-Script Form Validation {#tutorial-zero-script-form-validation}
 
-**Required structure:** `input` **first**, then `label` **after** (sibling), because CSS uses `~` combinator.
+**Goal:** Real-time visual validation with HTML5 `pattern` and CSS—no validation library.
+
+#### The analogy (for everyone)
+
+A **JavaScript** bouncer reads your ID, radios central office, waits, then opens the door—someone could intercept the radio.
+
+**UtahCSS** is a door with a key-shaped slot. If your ID matches the shape (`pattern`), the door opens physically. No bouncer.
+
+#### The step-by-step
+
+1. JavaScript often runs on every keystroke to check password rules.
+2. UtahCSS uses HTML `pattern` so the **browser** checks the shape.
+3. CSS says: if `:valid`, green border; if `:invalid` and the user has typed (`:not(:placeholder-shown)`), red border and show `.utah-error-text`.
+
+#### The professional pivot
+
+Client-side JS validation adds overhead and can be abused (e.g. ReDoS). UtahCSS uses the **HTML5 Constraint Validation API** plus `:valid` / `:invalid` / `:placeholder-shown`—validation runs in the browser’s engine, not your script bundle.
+
+#### Implementation
+
+See **[forms.html](./forms.html)** or copy:
 
 ```html
-<div class="utah-form-group">
-  <input
-    class="utah-input"
-    id="codename"
-    placeholder=" "
-    required
-    pattern="[A-Za-z0-9]{3,}"
-  >
-  <label for="codename" class="utah-label">CODENAME (3+ chars)</label>
-</div>
+<form class="utah-form">
+  <div class="utah-input-group">
+    <input
+      type="password"
+      id="secure-pass"
+      class="utah-input"
+      placeholder=" "
+      pattern="^(?=.*[A-Z])(?=.*\d).{8,}$"
+      required
+    >
+    <label for="secure-pass" class="utah-label">Enter Passcode</label>
+    <span class="utah-error-text">Must be 8+ chars with a number and uppercase letter.</span>
+  </div>
+  <button type="submit" class="utah-submit-btn">Initialize</button>
+</form>
 ```
 
-**Why `placeholder=" "`:** The floating label uses `:not(:placeholder-shown)` so the label stays floated when there is content. A single space counts as a non-empty placeholder for that selector while still looking empty.
+**Order matters:** `input` → `label` → `.utah-error-text` (siblings; CSS uses `~`).
 
-**Validation colors:**
+**Why `placeholder=" "`:** Hides red state until the user starts typing.
 
-- `:valid` → green bottom border (`--bio-green`).
-- `:invalid:not(:placeholder-shown)` → red bottom border (`--plasma-red`) once the user has typed something.
+#### Legacy underline fields
 
-Combine with standard HTML5 attributes: `required`, `type="email"`, `pattern`, `minlength`, etc.
+`.utah-form-group` still uses bottom-border-only styling for older snippets; `.utah-input-group` uses full border + error text.
 
 ---
 
@@ -374,8 +429,15 @@ All components assume border-box sizing and zeroed default margins.
 | `.utah-modal-root` | Wrapper for scoped multi-modal pages. |
 | `.utah-btn` | Primary button (alias of `.btn`). |
 | `.utah-close-btn` | Label acting as close control. |
-| `.utah-form-group` | Wrapper for floating label layout. |
-| `.utah-input` | Textual input underline style. |
+| `.utah-form` | Form container (max-width). |
+| `.utah-form-group` | Floating-label group (underline style). |
+| `.utah-input-group` | Full-border input + error text. |
+| `.utah-input` | Textual input. |
+| `.utah-error-text` | Shown when sibling input is invalid. |
+| `.utah-submit-btn` | Primary submit control. |
+| `.utah-router-view` | SPA page container. |
+| `.utah-menu-root` / `.utah-menu` | Checkbox-toggled menu (migration pattern). |
+| `.utah-tabs` | Radio-driven tab panels. |
 | `.utah-label` | Floating label. |
 | `.utah-dropdown` | Dropdown positioning context. |
 | `.utah-dropdown-menu` | Popover panel. |
@@ -478,6 +540,9 @@ Use `index.html` as a **canonical example** when unsure of markup order (especia
 | `README.md` | Project overview and quick start. |
 | `UTAH-CSS-GUIDE.md` | This document. |
 | `LICENSE` | MIT license. |
+| `SECURITY_MANIFEST.md` | Enterprise / government security case. |
+| `MIGRATION_GUIDE.md` | React / Bootstrap migration. |
+| `forms.html` | Pattern-matching form demo. |
 
 ---
 

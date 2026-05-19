@@ -21,7 +21,7 @@
     </div>
 </nav>
 
-<main class="container">
+<main class="container utah-router-view">
 
     <section id="home" class="utah-page" style="display:block;">
         <style>
@@ -99,7 +99,7 @@
         <p>Real-time validation without script.</p>
         <br>
 
-        <form>
+        <form class="utah-form">
             <div class="utah-form-group">
                 <input type="text" class="utah-input" id="codename" placeholder=" " required pattern="[A-Za-z0-9]{3,}">
                 <label for="codename" class="utah-label">CODENAME (3+ chars)</label>
@@ -110,13 +110,25 @@
                 <label for="contact" class="utah-label">SECURE EMAIL</label>
             </div>
 
-            <div class="utah-form-group">
-                <input type="password" class="utah-input" id="key" placeholder=" " required>
-                <label for="key" class="utah-label">ACCESS KEY</label>
+            <div class="utah-input-group">
+                <input
+                    type="password"
+                    id="secure-pass"
+                    class="utah-input"
+                    placeholder=" "
+                    pattern="^(?=.*[A-Z])(?=.*\d).{8,}$"
+                    required
+                >
+                <label for="secure-pass" class="utah-label">PASSCODE (8+, number + uppercase)</label>
+                <span class="utah-error-text">Must be 8+ chars with a number and uppercase letter.</span>
             </div>
 
-            <button type="submit" class="btn">TRANSMIT</button>
+            <button type="submit" class="utah-submit-btn">TRANSMIT</button>
         </form>
+
+        <p style="margin-top:1rem;font-size:0.85rem;opacity:0.8;">
+            Standalone form demo: <a href="forms.html" style="color:var(--cyber-blue);">forms.html</a>
+        </p>
 
         <br>
         <div class="utah-alert alert-success">

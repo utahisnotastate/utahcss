@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UtahCSS — Secure Access Console</title>
+    <link rel="stylesheet" href="utah.css">
+</head>
+<body>
+
+<nav class="utah-nav">
+    <a href="index.html" class="utah-brand">UTAH.CSS</a>
+    <div class="utah-nav-links">
+        <a href="index.html" class="utah-nav-link">DEMO</a>
+        <a href="UTAH-CSS-GUIDE.md" class="utah-nav-link">GUIDE</a>
+    </div>
+</nav>
+
+<main class="container" style="padding-top: 2rem;">
+    <form class="utah-form">
+        <h2>Secure Access Console</h2>
+        <p style="margin: 1rem 0; opacity: 0.85;">Pattern validation via HTML5 + CSS only. No JavaScript engine.</p>
+
+        <div class="utah-input-group">
+            <input
+                type="password"
+                id="secure-pass"
+                class="utah-input"
+                placeholder=" "
+                pattern="^(?=.*[A-Z])(?=.*\d).{8,}$"
+                required
+            >
+            <label for="secure-pass" class="utah-label">Enter Passcode</label>
+            <span class="utah-error-text">Must be 8+ chars with a number and uppercase letter.</span>
+        </div>
+
+        <div class="utah-input-group">
+            <input
+                type="email"
+                id="secure-email"
+                class="utah-input"
+                placeholder=" "
+                required
+            >
+            <label for="secure-email" class="utah-label">Secure Email</label>
+            <span class="utah-error-text">Enter a valid email address.</span>
+        </div>
+
+        <button type="submit" class="utah-submit-btn">Initialize</button>
+    </form>
+</main>
+
+</body>
+</html>

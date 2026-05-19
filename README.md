@@ -58,7 +58,14 @@ Open [`index.html`](./index.html) in a browser for routing, forms, carousel, the
 
 ## Documentation
 
-For advanced implementations—including SPA routing, carousel logic, pattern-matching forms, and the Child Protocol security model—see **[UTAH-CSS-GUIDE.md](./UTAH-CSS-GUIDE.md)**.
+| Document | Audience |
+|----------|----------|
+| **[UTAH-CSS-GUIDE.md](./UTAH-CSS-GUIDE.md)** | Developers — tutorials, components, reference |
+| **[SECURITY_MANIFEST.md](./SECURITY_MANIFEST.md)** | Enterprise / government — declarative security case |
+| **[MIGRATION_GUIDE.md](./MIGRATION_GUIDE.md)** | Architects — React, Bootstrap → UtahCSS |
+| **[forms.html](./forms.html)** | Live pattern-matching form validation demo |
+
+For SPA routing, carousel logic, pattern-matching forms, and the Child Protocol security model, start with **UTAH-CSS-GUIDE.md**.
 
 ## License
 
