@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Module 2 — Doors in the Dark</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <p class="module-tag">Declarative Foundations · Module 2</p>
+
+    <nav class="main-nav">
+        <a href="#home" class="nav-button">Home</a>
+        <a href="#dashboard" class="nav-button">Dashboard</a>
+        <a href="#settings" class="nav-button">Settings</a>
+    </nav>
+
+    <main class="content-stage">
+
+        <section id="home" class="page-set default-route">
+            <style>
+                body:has(.page-set:target) #home { display: none; }
+                #home:target { display: block !important; }
+            </style>
+            <h2>Welcome Home</h2>
+            <p>This is the main landing area. No hash in the URL? You still see this page.</p>
+        </section>
+
+        <section id="dashboard" class="page-set">
+            <h2>Secure Dashboard</h2>
+            <p>Your data is displayed here. Try the browser Back button.</p>
+        </section>
+
+        <section id="settings" class="page-set">
+            <h2>User Settings</h2>
+            <p>Adjust your preferences securely.</p>
+        </section>
+
+    </main>
+
+</body>
+</html>

@@ -5,6 +5,8 @@
 
 See also the project **[README.md](./README.md)** for the enterprise overview and quick-start modal.
 
+**New to zero-script development?** Start with the **[Declarative Foundations curriculum](./curriculum/README.md)** (Modules 1–2 + links to forms, cart, and `:has()` patterns).
+
 This document is split so **non-technical readers** can copy working patterns, and **developers** can understand behavior, limitations, and customization.
 
 ---
@@ -568,6 +570,7 @@ Use `index.html` as a **canonical example** when unsure of markup order (especia
 | `forms.html` | Pattern-matching form demo. |
 | `cart.html` | CSS counter shopping cart demo. |
 | `ADVANCED_CALCULATION.md` | Calculator/cart tutorial + roadmap. |
+| `curriculum/` | Beginner modules 1–2 + runnable examples. |
 
 ---
 

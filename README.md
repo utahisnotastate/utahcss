@@ -59,10 +59,23 @@ For **multiple modals** on one page, wrap each control in `.utah-modal-root` (se
 
 **Repository:** [github.com/utahisnotastate/utahcss](https://github.com/utahisnotastate/utahcss)
 
+## Beginner curriculum
+
+**[Declarative Foundations](./curriculum/README.md)** — five-module zero-script series for absolute beginners:
+
+1. [The Invisible Switch](./curriculum/MODULE_01_INVISIBLE_SWITCH.md) — checkboxes + `:checked`
+2. [Doors in the Dark](./curriculum/MODULE_02_DOORS_IN_THE_DARK.md) — routing with `:target`
+3. Form validation → [forms.html](./forms.html)
+4. CSS counters → [cart.html](./cart.html)
+5. Conditional UI → [UTAH-CSS-GUIDE.md](./UTAH-CSS-GUIDE.md)
+
+Run lesson demos: [`curriculum/examples/module-01/`](./curriculum/examples/module-01/) and [`module-02/`](./curriculum/examples/module-02/).
+
 ## Documentation
 
 | Document | Audience |
 |----------|----------|
+| **[curriculum/README.md](./curriculum/README.md)** | Beginners — zero-script bootcamp |
 | **[UTAH-CSS-GUIDE.md](./UTAH-CSS-GUIDE.md)** | Developers — tutorials, components, reference |
 | **[SECURITY_MANIFEST.md](./SECURITY_MANIFEST.md)** | Enterprise / government — declarative security case |
 | **[MIGRATION_GUIDE.md](./MIGRATION_GUIDE.md)** | Architects — React, Bootstrap → UtahCSS |
