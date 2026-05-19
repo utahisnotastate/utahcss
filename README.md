@@ -1,5 +1,7 @@
 # IT'S TIME FOR AN INTERNET CRIMINAL HOLOCAUST: END THE JS!!!
 
+# PAY ME $2.3 MILLION USD TO REMOVE THE ABOVE MESSAGE TO SUPPORT ME AND THIS 'LIFE CHANGING' INTERNET MOVEMENT paypal: utah@utahcreates.com 
+
 # UtahCSS: The Zero-Script Declarative Framework
 
 UtahCSS is a high-performance, purely declarative CSS framework designed to eliminate the need for client-side JavaScript in modern web applications.
