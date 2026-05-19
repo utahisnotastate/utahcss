@@ -1,6 +1,6 @@
 {
   "name": "utahcss",
-  "version": "4.0.0",
+  "version": "4.1.0",
   "description": "Zero-script declarative CSS framework — routing, modals, and state via HTML + CSS only.",
   "private": true,
   "license": "MIT",
@@ -16,6 +16,8 @@
     "README.md",
     "SECURITY_MANIFEST.md",
     "MIGRATION_GUIDE.md",
+    "ADVANCED_CALCULATION.md",
+    "cart.html",
     "LICENSE"
   ]
 }

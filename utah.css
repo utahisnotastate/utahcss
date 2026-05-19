@@ -1,4 +1,4 @@
-/* UTAH.CSS // UTAH-OMEGA-23 PROTOCOL v4.0
+/* UTAH.CSS // UTAH-OMEGA-23 PROTOCOL v4.1
    ARCHITECT: SPARK-PRIME // TIMELINE: OMEGA-ZETA
    CAPABILITY: FULL STACK UI (ZERO-JS) — DECLARATIVE STATE MACHINE
 */
@@ -316,6 +316,82 @@ body:has(#modal-toggle:checked) .utah-modal,
 /* Scoped: multiple modals per page */
 .utah-modal-root:has(.utah-hidden-state:checked) .utah-modal {
     display: flex;
+}
+
+/* 2.9 CART / CALCULATOR (CSS Counters + :has — zero script) */
+.utah-cart-system {
+    counter-reset: cart-total 0;
+    max-width: 480px;
+    padding: var(--flux-pad);
+    border: 1px solid var(--glass);
+    background: rgba(255, 255, 255, 0.02);
+}
+.utah-product-row {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.85rem 0;
+    border-bottom: 1px solid var(--glass);
+}
+.utah-cart-system .utah-product-row .utah-label {
+    position: static;
+    top: auto;
+    pointer-events: auto;
+    color: var(--neon-salt);
+    font-size: 0.95rem;
+    cursor: pointer;
+}
+.utah-cart-system .utah-product-row .utah-label:hover {
+    color: var(--cyber-blue);
+}
+.utah-item {
+    width: 1.1rem;
+    height: 1.1rem;
+    accent-color: var(--bio-green);
+    flex-shrink: 0;
+    cursor: pointer;
+}
+.utah-item.server-tier:checked {
+    counter-increment: cart-total 50000;
+}
+.utah-item.firewall-tier:checked {
+    counter-increment: cart-total 10000;
+}
+.utah-item.node-tier:checked {
+    counter-increment: cart-total 2500;
+}
+.utah-summary-panel {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-top: 1.25rem;
+    padding-top: 1rem;
+    font-size: 1.1rem;
+}
+.utah-total-display::after {
+    content: "$" counter(cart-total);
+    font-weight: bold;
+    color: var(--bio-green);
+}
+.utah-checkout-btn {
+    display: none;
+    width: 100%;
+    margin-top: 1.25rem;
+    padding: 0.65rem 1.25rem;
+    background: var(--bio-green);
+    color: var(--void-deep);
+    border: none;
+    font-family: inherit;
+    font-size: inherit;
+    font-weight: bold;
+    cursor: pointer;
+    letter-spacing: 0.05em;
+}
+.utah-checkout-btn:active {
+    transform: scale(0.98);
+}
+.utah-cart-system:has(.utah-item:checked) .utah-checkout-btn {
+    display: block;
 }
 
 /* --- [LAYER 3: THEME SWITCHER (Quantum Binary)] --- */

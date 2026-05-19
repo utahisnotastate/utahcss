@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UtahCSS — Air-Gapped Requisition Cart</title>
+    <link rel="stylesheet" href="utah.css">
+</head>
+<body>
+
+<nav class="utah-nav">
+    <a href="index.html" class="utah-brand">UTAH.CSS</a>
+    <div class="utah-nav-links">
+        <a href="index.html" class="utah-nav-link">DEMO</a>
+        <a href="forms.html" class="utah-nav-link">FORMS</a>
+        <a href="ADVANCED_CALCULATION.md" class="utah-nav-link">DOCS</a>
+    </div>
+</nav>
+
+<main class="container" style="padding-top: 2rem;">
+    <form class="utah-cart-system">
+        <h2>Secure Hardware Requisition</h2>
+        <p style="margin: 0.75rem 0 1rem; opacity: 0.85; font-size: 0.9rem;">
+            Totals computed by CSS <code>counter-reset</code> / <code>counter-increment</code> — no script.
+        </p>
+
+        <div class="utah-product-row">
+            <input type="checkbox" id="item-server" class="utah-item server-tier">
+            <label for="item-server" class="utah-label">Quantum Server Rack ($50,000)</label>
+        </div>
+
+        <div class="utah-product-row">
+            <input type="checkbox" id="item-firewall" class="utah-item firewall-tier">
+            <label for="item-firewall" class="utah-label">Air-Gap Firewall ($10,000)</label>
+        </div>
+
+        <div class="utah-product-row">
+            <input type="checkbox" id="item-node" class="utah-item node-tier">
+            <label for="item-node" class="utah-label">Edge Compute Node ($2,500)</label>
+        </div>
+
+        <div class="utah-summary-panel">
+            <span>Total Authorized:</span>
+            <span class="utah-total-display" aria-live="polite"></span>
+        </div>
+
+        <button type="submit" class="utah-checkout-btn">Authorize Requisition</button>
+    </form>
+</main>
+
+</body>
+</html>

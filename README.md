@@ -54,7 +54,7 @@ For **multiple modals** on one page, wrap each control in `.utah-modal-root` (se
 
 ## Live Demo
 
-Open [`index.html`](./index.html) in a browser for routing, forms, carousel, theme toggle, and modal examples.
+Open [`index.html`](./index.html) in a browser for routing, forms, carousel, theme toggle, and modal examples. See also [`forms.html`](./forms.html) and [`cart.html`](./cart.html).
 
 ## Documentation
 
@@ -64,6 +64,8 @@ Open [`index.html`](./index.html) in a browser for routing, forms, carousel, the
 | **[SECURITY_MANIFEST.md](./SECURITY_MANIFEST.md)** | Enterprise / government — declarative security case |
 | **[MIGRATION_GUIDE.md](./MIGRATION_GUIDE.md)** | Architects — React, Bootstrap → UtahCSS |
 | **[forms.html](./forms.html)** | Live pattern-matching form validation demo |
+| **[cart.html](./cart.html)** | Live CSS-counter cart / calculator demo |
+| **[ADVANCED_CALCULATION.md](./ADVANCED_CALCULATION.md)** | Tutorial 3 — counters, `:has()`, compliance roadmap |
 
 For SPA routing, carousel logic, pattern-matching forms, and the Child Protocol security model, start with **UTAH-CSS-GUIDE.md**.
 

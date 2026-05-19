@@ -1,6 +1,6 @@
 # Utah.css — User Guide & Technical Reference
 
-**Version:** Utah-Omega-23 Protocol v4.0 (as declared in `utah.css`)  
+**Version:** Utah-Omega-23 Protocol v4.1 (as declared in `utah.css`)  
 **Philosophy:** Full-stack–style UI patterns using **HTML + CSS only**—no JavaScript framework required for navigation, modals, dismissible alerts, theme toggle, routing, or basic form feedback.
 
 See also the project **[README.md](./README.md)** for the enterprise overview and quick-start modal.
@@ -438,6 +438,12 @@ All components assume border-box sizing and zeroed default margins.
 | `.utah-router-view` | SPA page container. |
 | `.utah-menu-root` / `.utah-menu` | Checkbox-toggled menu (migration pattern). |
 | `.utah-tabs` | Radio-driven tab panels. |
+| `.utah-cart-system` | Cart form with `counter-reset` total. |
+| `.utah-product-row` | Single cart line (checkbox + label). |
+| `.utah-item` | Cart checkbox; tier class sets increment. |
+| `.utah-total-display` | Renders `$` + `counter(cart-total)` via `::after`. |
+| `.utah-checkout-btn` | Shown when cart `:has(.utah-item:checked)`. |
+| `.utah-summary-panel` | Total row layout. |
 | `.utah-label` | Floating label. |
 | `.utah-dropdown` | Dropdown positioning context. |
 | `.utah-dropdown-menu` | Popover panel. |
@@ -543,6 +549,8 @@ Use `index.html` as a **canonical example** when unsure of markup order (especia
 | `SECURITY_MANIFEST.md` | Enterprise / government security case. |
 | `MIGRATION_GUIDE.md` | React / Bootstrap migration. |
 | `forms.html` | Pattern-matching form demo. |
+| `cart.html` | CSS counter shopping cart demo. |
+| `ADVANCED_CALCULATION.md` | Calculator/cart tutorial + roadmap. |
 
 ---
 
