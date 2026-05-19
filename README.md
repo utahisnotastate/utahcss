@@ -45,8 +45,7 @@ How to build a functional, interactive modal without a single line of JavaScript
     <p>This modal is rendered entirely via CSS state changes.</p>
     <label for="modal-toggle" class="utah-close-btn">Close</label>
   </div>
-  </div>
-</motion>
+</div>
 ```
 
 *How it works:* The `<label>` triggers the hidden `<input>`. The `utah.css` file listens for the `:checked` pseudo-class and dynamically updates the `display` properties of the `.utah-modal`. Simple, secure, and unbreakable.
